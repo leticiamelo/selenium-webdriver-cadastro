@@ -15,25 +15,32 @@ public class TestePrime {
 	private DSL dsl;
 	
 	//Metodo before que será executado automaticamente antes de qualquer teste:
-		@Before
-		public void inicializa(){
-		
-		System.setProperty("webdriver.chrome.driver", "C:/Users/erica.castro/Documents/Pessoais/Curso de Selenium/Chromedriver/chromedriver_win32/chromedriver.exe");
-		
-		getDriver().get("https://www.primefaces.org/showcase/ui/input/oneRadio.xhtml");
-		dsl = new DSL();
-		}
-		
-		@After
-		public void finaliza(){
-			
-			DriverFactory.killDriver();
-		}
+	@Before
+	public void inicializa(){
 	
+		System.setProperty("webdriver.chrome.driver", "C:/Users/erica.castro/Documents/Pessoais/Curso de Selenium/Chromedriver/chromedriver_win32/chromedriver.exe");
+		dsl = new DSL();
+	}
+	
+	@After
+	public void finaliza(){
+		
+//		DriverFactory.killDriver();
+	}
+
 	@Test
 	public void deveInteragirComRadioPrime(){
-		dsl.clicarRadio(By.xpath(".//*[@id='j_idt115:console:0']/../..//span"));
-		Assert.assertTrue(dsl.isRadioMarcado("j_idt115:console:0"));
-		}
-	
+		getDriver().get("https://www.primefaces.org/showcase/ui/input/oneRadio.xhtml");
+		dsl.clicarRadio(By.xpath(".//label[.='PS4']/..//span"));
+		Assert.assertTrue(dsl.isRadioMarcado("j_idt672:console:1"));
+		
 	}
+	
+	@Test
+	public void deveInteragirComComboPrime(){
+		getDriver().get("https://www.primefaces.org/showcase/ui/input/oneMenu.xhtml");
+		dsl.clicarRadio(By.xpath("//td[.='Basic:']/..//div/div[3]/span"));
+		dsl.clicarRadio(By.xpath(".//*[@id='j_idt672:console_2']"));
+		Assert.assertEquals("PS4", dsl.obterTexto(By.xpath("j_idt672:console_label")));
+	}
+}

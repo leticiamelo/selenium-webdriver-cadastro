@@ -29,17 +29,17 @@ public class TesteAjax {
 	@After
 	public void finaliza(){
 		
-		DriverFactory.killDriver();
+//		DriverFactory.killDriver();
 	}
 
 	@Test
 	public void testAjax(){
-		dsl.escreve("j_idt114:name", "teste");
-		dsl.clicarBotao("j_idt114:j_idt117");
+		dsl.escreve("j_idt671:name", "teste");
+		dsl.clicarBotao("j_idt671:j_idt674");
 		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 30);
-		//wait.until(ExpectedConditions.textToBe(By.id("j_idt114:display"), "teste"));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("j_idt98")));
-		Assert.assertEquals("teste", dsl.obterTexto("j_idt114:display"));
+		wait.until(ExpectedConditions.textToBe(By.id("j_idt671:display"), "teste"));
+		//wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("j_idt98")));
+		Assert.assertEquals("teste", dsl.obterTexto("j_idt671:display"));
 	}
 	
 }

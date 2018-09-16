@@ -48,6 +48,9 @@ public class TesteSincronismo {
 	
 	@Test
 	public void deveUtilizarEsperaImplicita() throws InterruptedException{
+		//a espera implicita pode ser iniciada junto com o @before. Se for utilizada em apenas um teste, 
+		//deve ser iniciada e finalizada conforme exemplo abaixo.
+		//A espera implicita fica tentando acessar a funcionalidade até chegar aos minutos atribuidos.
 		DriverFactory.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		dsl.clicarBotao("buttonDelay");
 		dsl.escreve("novoCampo", "Deu certo?");

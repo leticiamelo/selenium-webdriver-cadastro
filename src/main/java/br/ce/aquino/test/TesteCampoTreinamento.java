@@ -27,9 +27,7 @@ public class TesteCampoTreinamento {
 	public void inicializa(){
 	
 		System.setProperty("webdriver.chrome.driver", "C:/Users/erica.castro/Documents/Pessoais/Curso de Selenium/Chromedriver/chromedriver_win32/chromedriver.exe");
-		
 		getDriver().get("file:///" + System.getProperty("user.dir") + ("/src/main/resources/componentes.html"));
-	
 		dsl = new DSL();
 		page = new CampoTreinamentoPage ();
 	}
@@ -37,7 +35,6 @@ public class TesteCampoTreinamento {
 	@After
 	public void finaliza(){
 		DriverFactory.killDriver();
-		
 	}
 	
 	@Test
@@ -73,14 +70,12 @@ public class TesteCampoTreinamento {
 		dsl.clicarCheck("elementosForm:comidaFavorita:0");
 		// Validando se o elemento foi clicado corretamente:		
 	    Assert.assertTrue(dsl.isCheckMarcado("elementosForm:comidaFavorita:0"));
-	    
 	}
 		
 	@Test
 	public void deveInteragirComCombo(){
 		
 		dsl.selecionarCombo("elementosForm:escolaridade", "Especializacao");
-		
 		//para verificar qual o valor que está selecionado
 		Assert.assertEquals("Especializacao", dsl.obterValorCombo("elementosForm:escolaridade"));
 	}
@@ -90,7 +85,6 @@ public class TesteCampoTreinamento {
 
 		Assert.assertEquals(8,  dsl.obterQuantidadeOpcoesCombo("elementosForm:escolaridade"));
 		Assert.assertTrue(dsl.verificarOpcaoCombo("elementosForm:escolaridade", "Mestrado"));
-		
 	}
 		
 	@Test

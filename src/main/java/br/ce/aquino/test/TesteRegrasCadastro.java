@@ -1,11 +1,8 @@
 package br.ce.aquino.test;
-import static br.ce.wcaquino.core.DriverFactory.killDriver;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,11 +12,12 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 import br.ce.aquino.page.CampoTreinamentoPage;
+import br.ce.wcaquino.core.BaseTest;
 import br.ce.wcaquino.core.DSL;
 import br.ce.wcaquino.core.DriverFactory;
 
-	@RunWith(Parameterized.class)
-	public class TesteRegrasCadastro {
+@RunWith(Parameterized.class)
+public class TesteRegrasCadastro extends BaseTest{
 	
 	private DSL dsl;
 	private CampoTreinamentoPage page;
@@ -29,7 +27,7 @@ import br.ce.wcaquino.core.DriverFactory;
 	@Parameter(value=1)
 	public String sobrenome;
 	@Parameter(value=2)
-	public Object sexo;
+	public String sexo;
 	@Parameter(value=3)
 	public List<String> comidas;
 	@Parameter(value=4)
@@ -37,21 +35,14 @@ import br.ce.wcaquino.core.DriverFactory;
 	@Parameter(value=5)
 	public String msg;
 
-	//Metodo before que será executado automaticamente antes de qualquer teste:
 	@Before
 	public void inicializa(){
 		System.setProperty("webdriver.chrome.driver", "C:/Users/erica.castro/Documents/Pessoais/Curso de Selenium/Chromedriver/chromedriver_win32/chromedriver.exe");
-		
 		DriverFactory.getDriver().get("file:///" + System.getProperty("user.dir") + ("/src/main/resources/componentes.html"));
 		dsl = new DSL();
 		page = new CampoTreinamentoPage();
 	}
 	
-	@After
-	public void finaliza(){
-		killDriver();
-	}	
-		
 	@Parameters
 	public static Collection<Object[]> getCollection(){
 		return Arrays.asList(new Object [] []{
@@ -64,7 +55,7 @@ import br.ce.wcaquino.core.DriverFactory;
 	}
 	
 	@Test
-	public void ValidarItemOqueEhEsporte(){
+	public void deveValidarRegras(){
 		
 		page.setNome(nome);	
 		page.setSobrenome(sobrenome);

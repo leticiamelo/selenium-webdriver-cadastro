@@ -60,13 +60,18 @@ public class DSL {
 	
 	/******************* Combo *********************/
 	
-	public void selecionarCombo (String id, String valor){
+	public void selecionarCombo (By by, String valor){
 		
-		WebElement element = DriverFactory.getDriver().findElement(By.id(id));
+		WebElement element = DriverFactory.getDriver().findElement(by);
 		Select combo = new Select (element);
 		combo.selectByVisibleText(valor);
 	}
+	
+	public void selecionarCombo (String id, String valor){
+		selecionarCombo(By.id(id, valor));
 		
+	}
+	
 	public void deselecionarCombo (String id, String valor){
 		
 		WebElement element = DriverFactory.getDriver().findElement(By.id(id));
@@ -118,6 +123,12 @@ public class DSL {
 		}
 		return false;
 	}
+	
+	public void selecionarComboPrime(String radical, String valor){
+		clicarRadio(By.xpath("//td[.='Basic:']/..//div/div[3]/span"));
+		clicarRadio(By.xpath(".//*[@id='" +radical+ "']"));
+	}
+	
 	
 	/********************** Botao ****************************/
 	
